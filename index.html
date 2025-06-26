@@ -1,0 +1,272 @@
+
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Linkmehub</title>
+        <meta name="description" content="Open Source Linktree Alternative">
+        <link rel="icon" href="./assets/profile.png" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+          :root {
+            --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --font-inter: 'Inter', var(--font-sans);
+            --font-jetbrains: 'JetBrains Mono', var(--font-mono);
+          }
+
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+
+          html, body {
+            height: 100%;
+            min-height: 100vh;
+          }
+
+          body {
+            background: url('./assets/mobile-wallpaper-9-610x1084.png') center/cover no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: var(--font-sans);
+            color: #1a1a1a;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+          }
+
+          .container {
+            width: 100%;
+            max-width: min(680px, 90vw);
+            margin: 0 auto;
+            padding: clamp(1rem, 5vh, 3rem) 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            min-height: 100vh;
+          }
+
+          .profile-pic {
+            width: clamp(64px, 15vw, 96px);
+            height: clamp(64px, 15vw, 96px);
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: clamp(1rem, 3vh, 2rem);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          }
+
+          .title {
+            font-family: var(--sans);
+            font-size: clamp(16px, 5vw, 24px);
+            color: #1a202c;
+            text-align: center;
+            font-weight: 700;
+            font-style: normal;
+            margin-bottom: clamp(0.5rem, 2vh, 1rem);
+            width: 100%;
+            line-height: 1.2;
+          }
+
+          .description {
+            font-family: var(--sans);
+            font-size: clamp(14px, 4vw, 16px);
+            color: #4b5563;
+            text-align: center;
+            font-weight: 400;
+            font-style: normal;
+            margin-bottom: clamp(1.5rem, 5vh, 3rem);
+            width: 100%;
+            line-height: 1.5;
+            max-width: 65ch;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .links {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.5rem, 2vh, 1rem);
+            width: 100%;
+            max-width: min(500px, 90vw);
+            margin: 0 auto;
+            flex: 0 auto;
+            justify-content: flex-start;
+          }
+
+          .link-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+          }
+
+          .link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            width: 100%;
+            max-width: min(500px, 90vw);
+          }
+
+          .link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          }
+
+          .link:active {
+            transform: translateY(0);
+          }
+
+          .link-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            flex: none;
+          }
+
+          .link-icon svg {
+            width: 20px;
+            height: 20px;
+          }
+
+          .link-icon img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+          }
+
+          .link-text {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .footer {
+            flex-shrink: 0;
+            width: 100%;
+            text-align: center;
+            padding: clamp(0.5rem, 2vh, 1rem);
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            color: rgba(107, 114, 128, 0.75);
+            margin-top: auto;
+          }
+
+          .footer a {
+            color: inherit;
+            text-decoration: underline;
+          }
+
+          @media (max-height: 600px) {
+            .container {
+              padding-top: 0.5rem;
+              padding-bottom: 0.5rem;
+            }
+            .profile-pic {
+              margin-bottom: 0.5rem;
+            }
+            .title {
+              margin-bottom: 0.25rem;
+            }
+            .description {
+              margin-bottom: 1rem;
+            }
+            .links {
+              gap: 0.5rem;
+            }
+          }
+
+          
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <img src="./assets/profile.png" alt="" class="profile-pic">
+          <h1 class="title">Linkmehub</h1>
+          <p class="description">Open Source Linktree Alternative</p>
+          <div class="links">
+            
+                <div class="link-wrapper" style="text-align: center;">
+                  <a 
+                    data-link-id="0"
+                    data-link-label="Instagram"
+                    href="https://instagram.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="link"
+                    style="
+                      background: #000000;
+                      color: #ffffff;
+                      font-family: inherit;
+                      font-size: 16px;
+                      font-weight: 700;
+                      font-style: normal;
+                      justify-content: center;
+                      gap: 0.75rem;
+                      padding: 0.5rem 1rem;
+                      border-radius: 0.5rem;
+                      min-width: 200px;
+                      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                    "
+                  >
+                    <span class="link-icon" style="width: 24px; height: 24px;">
+                      <img src="./assets/icons/custom-0.png" alt="">
+                    </span>
+                    <span class="link-text">Instagram</span>
+                  </a>
+                </div>
+              
+                <div class="link-wrapper" style="text-align: center;">
+                  <a 
+                    data-link-id="1"
+                    data-link-label="Facebook"
+                    href="https://bytexgrid.github.io/gitlost/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="link"
+                    style="
+                      background: rgba(224, 231, 255, 0.03);
+                      color: #000000;
+                      font-family: inherit;
+                      font-size: 16px;
+                      font-weight: 400;
+                      font-style: normal;
+                      justify-content: center;
+                      gap: 0.75rem;
+                      padding: 0.5rem 1rem;
+                      border-radius: 0.5rem;
+                      min-width: 200px;
+                      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                    "
+                  >
+                    <span class="link-icon" style="width: 24px; height: 24px;">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>
+                    </span>
+                    <span class="link-text">Facebook</span>
+                  </a>
+                </div>
+              
+          </div>
+        </div>
+        <footer class="footer">
+          Powered by <a href="https://linkmehub.vercel.app" target="_blank" rel="noopener noreferrer">LinkmeHub</a>
+        </footer>
+        
+      </body>
+      </html>
+    
